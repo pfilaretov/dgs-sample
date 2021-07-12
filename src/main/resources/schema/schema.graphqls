@@ -1,8 +1,16 @@
 type Query {
-    shows(titleFilter: String): [Show]
+    shows(title: String, role: String): [Show]
 }
 
 type Show {
     title: String
     releaseYear: Int
+    actors: [Actor]
 }
+
+type Actor {
+    firstName: String
+    lastName: String
+    role: String
+}
+
