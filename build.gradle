@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.5.2'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id "com.netflix.dgs.codegen" version "5.0.2"
 }
 
 group = 'pro.filaretov.spring.dgs'
@@ -32,4 +33,10 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+generateJava {
+    schemaPaths = ["${projectDir}/src/main/resources/schema"] // List of directories containing schema files
+    packageName = 'pro.filaretov.spring.dgs' // The package name to use to generate sources
+    generateClient = false // Enable generating the type safe query API
 }

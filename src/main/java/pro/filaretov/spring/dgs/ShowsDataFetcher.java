@@ -7,8 +7,11 @@ import com.netflix.graphql.dgs.DgsQuery;
 import com.netflix.graphql.dgs.InputArgument;
 import java.util.List;
 import java.util.stream.Collectors;
-import pro.filaretov.spring.dgs.model.Actor;
-import pro.filaretov.spring.dgs.model.Show;
+import pro.filaretov.spring.dgs.DgsConstants.QUERY;
+import pro.filaretov.spring.dgs.DgsConstants.SHOW;
+import pro.filaretov.spring.dgs.types.Actor;
+import pro.filaretov.spring.dgs.types.Show;
+import pro.filaretov.spring.dgs.types.ShowFilter;
 
 /**
  * Data fetcher for Shows
@@ -38,7 +41,7 @@ public class ShowsDataFetcher {
     }
 
     // field specified explicitly, so that we are not relying on method name as a field name (default behaviour)
-    @DgsQuery(field = "shows")
+    @DgsQuery(field = QUERY.Shows)
     public List<Show> shows(@InputArgument String title, @InputArgument ShowFilter filter) {
         return shows.stream()
             .filter(show -> title == null || show.getTitle().contains(title))
@@ -48,7 +51,7 @@ public class ShowsDataFetcher {
             .collect(Collectors.toList());
     }
 
-    @DgsData(parentType = "Show", field = "actors")
+    @DgsData(parentType = SHOW.TYPE_NAME, field = SHOW.Actors)
     public List<Actor> actors(DgsDataFetchingEnvironment environment) {
         Show show = environment.getSource();
         return show.getActors();
