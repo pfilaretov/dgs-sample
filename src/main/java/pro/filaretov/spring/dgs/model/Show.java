@@ -1,4 +1,4 @@
-package pro.filaretov.spring.dgs;
+package pro.filaretov.spring.dgs.model;
 
 import java.util.List;
 import lombok.Data;

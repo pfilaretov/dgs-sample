@@ -1,5 +1,5 @@
 type Query {
-    shows(title: String, role: String): [Show]
+    shows(title: String, filter: ShowFilter): [Show]
 }
 
 type Show {
@@ -14,3 +14,11 @@ type Actor {
     role: String
 }
 
+input ShowFilter {
+    actorRole: String
+    genre: Genre
+}
+
+enum Genre {
+    action, comedy, drama, fantasy, horror
+}

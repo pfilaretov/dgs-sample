@@ -7,6 +7,8 @@ import com.netflix.graphql.dgs.DgsQuery;
 import com.netflix.graphql.dgs.InputArgument;
 import java.util.List;
 import java.util.stream.Collectors;
+import pro.filaretov.spring.dgs.model.Actor;
+import pro.filaretov.spring.dgs.model.Show;
 
 /**
  * Data fetcher for Shows
@@ -37,11 +39,12 @@ public class ShowsDataFetcher {
 
     // field specified explicitly, so that we are not relying on method name as a field name (default behaviour)
     @DgsQuery(field = "shows")
-    public List<Show> shows(@InputArgument String title, @InputArgument String role) {
+    public List<Show> shows(@InputArgument String title, @InputArgument ShowFilter filter) {
         return shows.stream()
             .filter(show -> title == null || show.getTitle().contains(title))
-            .filter(show -> role == null || show.getActors().stream()
-                .anyMatch(actor -> actor.getRole().equalsIgnoreCase(role)))
+            .filter(show -> filter == null || filter.getActorRole() == null ||
+                show.getActors().stream()
+                .anyMatch(actor -> actor.getRole().equalsIgnoreCase(filter.getActorRole())))
             .collect(Collectors.toList());
     }
 
