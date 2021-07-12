@@ -34,3 +34,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Other ###
+# should be ignored, but for the sake of the sample app the file is committed
+#**/.graphqlconfig

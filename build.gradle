@@ -5,16 +5,29 @@ plugins {
 }
 
 group = 'pro.filaretov.spring.dgs'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '16'
+version = '1.0.0-SNAPSHOT'
+sourceCompatibility = '11'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    // Spring boot
     implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // DGS Framework
+    implementation(platform('com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:latest.release'))
+    implementation 'com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter'
+
+    // Other
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+    // Test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testCompileOnly 'org.projectlombok:lombok:1.18.20'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
 }
 
 test {
