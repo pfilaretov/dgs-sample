@@ -1,0 +1,18 @@
+{
+    shows (title: "o", filter: {
+#        genre: fantasy,
+#        actorRole: "Sauron"
+    }) {
+        title
+        rating {
+            averageScore
+            votesNumber
+        }
+#        releaseYear
+#        actors {
+#            role
+#            firstName
+#            lastName
+#        }
+    }
+}

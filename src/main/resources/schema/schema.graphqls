@@ -1,3 +1,4 @@
+# Queries
 type Query {
     shows(title: String, filter: ShowFilter): [Show]
 }
@@ -6,6 +7,8 @@ type Show {
     title: String
     releaseYear: Int
     actors: [Actor]
+    scores: [Int]
+    rating: Rating
 }
 
 type Actor {
@@ -21,4 +24,19 @@ input ShowFilter {
 
 enum Genre {
     action, comedy, drama, fantasy, horror
+}
+
+# Mutation
+type Mutation {
+    addRating(input: RatingInput!): Rating!
+}
+
+input RatingInput {
+    title: String
+    score: Int
+}
+
+type Rating {
+    averageScore: Float
+    votesNumber: Int
 }

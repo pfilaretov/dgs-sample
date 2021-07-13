@@ -1,0 +1,9 @@
+mutation {
+    addRating(input: {
+        title: "The Lord of The Rings: Fellowship of the Ring"
+        score: 0
+    }) {
+        averageScore
+        votesNumber
+    }
+}
