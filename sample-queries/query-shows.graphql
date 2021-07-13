@@ -9,10 +9,10 @@
             votesNumber
         }
 #        releaseYear
-#        actors {
-#            role
+        actors {
+            role
 #            firstName
 #            lastName
-#        }
+        }
     }
 }

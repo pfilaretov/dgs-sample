@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import pro.filaretov.spring.dgs.DgsConstants.MUTATION;
 import pro.filaretov.spring.dgs.DgsConstants.QUERY;
 import pro.filaretov.spring.dgs.DgsConstants.SHOW;
@@ -93,29 +94,34 @@ public class ShowsDataFetcher {
         for (int i = 0; i < shows.size(); i++) {
             Show show = shows.get(i);
             if (show.getTitle().equalsIgnoreCase(title)) {
-                List<Integer> newScores = new ArrayList<>(show.getScores());
-                newScores.add(score);
-
-                Rating currentRating = show.getRating();
-                int votesNumber = currentRating.getVotesNumber() + 1;
-                double averageScore = (double) newScores.stream().mapToInt(value -> value).sum() / votesNumber;
-
-                Rating newRating = new Rating(averageScore, votesNumber);
-
-                Show newShow = new Builder()
-                    .title(show.getTitle())
-                    .releaseYear(show.getReleaseYear())
-                    .actors(show.getActors())
-                    .scores(newScores)
-                    .rating(newRating)
-                    .build();
-
-                shows.set(i, newShow);
-                return newRating;
+                return updateShows(score, i, show);
             }
         }
 
         throw new RuntimeException("Show '" + title + "' not found");
+    }
+
+    @NotNull
+    private Rating updateShows(Integer score, int i, Show show) {
+        List<Integer> newScores = new ArrayList<>(show.getScores());
+        newScores.add(score);
+
+        Rating currentRating = show.getRating();
+        int votesNumber = currentRating.getVotesNumber() + 1;
+        double averageScore = (double) newScores.stream().mapToInt(value -> value).sum() / votesNumber;
+
+        Rating newRating = new Rating(averageScore, votesNumber);
+
+        Show newShow = new Builder()
+            .title(show.getTitle())
+            .releaseYear(show.getReleaseYear())
+            .actors(show.getActors())
+            .scores(newScores)
+            .rating(newRating)
+            .build();
+
+        shows.set(i, newShow);
+        return newRating;
     }
 
 

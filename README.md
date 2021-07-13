@@ -7,6 +7,7 @@ Sample GraphQL spring boot app built with [Netflix DGS Framework](https://netfli
 * Run spring boot app
 * GraphQL endpoint is available at http://localhost:8080/graphql
 * GraphiQL query editor is available at http://localhost:8080/graphiql
+* Check out `sample-queries` folder which contains sample queries
 * Use GraphiQL or [JS GraphQL IDEA Plugin](https://plugins.jetbrains.com/plugin/8097-js-graphql) to query the endpoint
 
 ## Additional Links
