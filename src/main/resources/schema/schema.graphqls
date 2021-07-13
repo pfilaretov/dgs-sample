@@ -4,6 +4,7 @@ type Query {
 }
 
 type Show {
+    id: String
     title: String
     releaseYear: Int
     actors: [Actor]
@@ -12,6 +13,7 @@ type Show {
 }
 
 type Actor {
+    id: String
     firstName: String
     lastName: String
     role: String
