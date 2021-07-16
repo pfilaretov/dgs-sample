@@ -1,21 +1,13 @@
-package pro.filaretov.spring.dgs;
+package pro.filaretov.spring.dgs.service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.stream.Collectors;
-import javax.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 import pro.filaretov.spring.dgs.entity.ShowEntity;
 import pro.filaretov.spring.dgs.mapper.ShowMapper;
 import pro.filaretov.spring.dgs.repository.ShowRepository;
-import pro.filaretov.spring.dgs.types.Actor;
-import pro.filaretov.spring.dgs.types.Rating;
 import pro.filaretov.spring.dgs.types.Show;
-import pro.filaretov.spring.dgs.types.Show.Builder;
 import pro.filaretov.spring.dgs.types.ShowFilter;
 
 /**

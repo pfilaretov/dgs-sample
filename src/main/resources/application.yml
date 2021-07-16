@@ -10,3 +10,5 @@ spring:
     generate-ddl: true
     # if this prop is not set, spring tries to execute data.sql BEFORE db schema is automatically created by hibernate
     defer-datasource-initialization: true
+    # added to debug SQL
+    show-sql: true

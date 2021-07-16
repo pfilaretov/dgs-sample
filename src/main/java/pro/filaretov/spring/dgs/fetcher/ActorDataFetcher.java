@@ -1,4 +1,4 @@
-package pro.filaretov.spring.dgs;
+package pro.filaretov.spring.dgs.fetcher;
 
 import com.netflix.graphql.dgs.DgsComponent;
 import com.netflix.graphql.dgs.DgsData;
@@ -23,8 +23,10 @@ public class ActorDataFetcher {
     public CompletableFuture<List<Actor>> actors(DgsDataFetchingEnvironment environment) {
         DataLoader<List<String>, List<Actor>> dataLoader = environment.getDataLoader(ActorsDataLoader.class);
 
-        Show show = environment.getSource();
-        return dataLoader.load(show.getActors().stream().map(Actor::getId).collect(Collectors.toList()));
+        // TODO - show.getActors() is null because it's a lazy loading collection, so how to get a list of actor IDs here?
+//        Show show = environment.getSource();
+//        return dataLoader.load(show.getActors().stream().map(Actor::getId).collect(Collectors.toList()));
+        return dataLoader.load(List.of("1", "2", "3"));
     }
 
 }

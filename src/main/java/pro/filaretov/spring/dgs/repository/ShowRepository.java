@@ -1,6 +1,5 @@
 package pro.filaretov.spring.dgs.repository;
 
-
 import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import pro.filaretov.spring.dgs.entity.ShowEntity;

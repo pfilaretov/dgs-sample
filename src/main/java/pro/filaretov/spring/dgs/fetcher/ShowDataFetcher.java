@@ -1,16 +1,13 @@
-package pro.filaretov.spring.dgs;
+package pro.filaretov.spring.dgs.fetcher;
 
 import com.netflix.graphql.dgs.DgsComponent;
-import com.netflix.graphql.dgs.DgsData;
 import com.netflix.graphql.dgs.DgsQuery;
 import com.netflix.graphql.dgs.InputArgument;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import pro.filaretov.spring.dgs.DgsConstants.MUTATION;
 import pro.filaretov.spring.dgs.DgsConstants.QUERY;
-import pro.filaretov.spring.dgs.types.Rating;
-import pro.filaretov.spring.dgs.types.RatingInput;
+import pro.filaretov.spring.dgs.service.ShowService;
 import pro.filaretov.spring.dgs.types.Show;
 import pro.filaretov.spring.dgs.types.ShowFilter;
 

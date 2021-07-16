@@ -1,9 +1,14 @@
 package pro.filaretov.spring.dgs.entity;
 
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -25,4 +30,12 @@ public class ShowEntity {
     private Long id;
     private String title;
     private Integer releaseYear;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "shows_actors",
+        joinColumns = @JoinColumn(name = "show_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name = "actor_id", referencedColumnName = "id")
+    )
+    private List<ActorEntity> actors;
 }

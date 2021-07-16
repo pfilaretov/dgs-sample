@@ -1,18 +1,18 @@
 {
-    shows (title: "", filter: {
+    shows (title: "Hobbit", filter: {
 #        genre: fantasy,
 #        actorRole: "Sauron"
     }) {
         title
         releaseYear
-        #        rating {
-        #            averageScore
-        #            votesNumber
-        #        }
-#        actors {
-#            role
+#        rating {
+#            averageScore
+#            votesNumber
+#        }
+        actors {
+            role
 #            firstName
 #            lastName
-#        }
+        }
     }
 }
