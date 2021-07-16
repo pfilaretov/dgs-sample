@@ -9,6 +9,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
+import pro.filaretov.spring.dgs.entity.ShowEntity;
+import pro.filaretov.spring.dgs.mapper.ShowMapper;
+import pro.filaretov.spring.dgs.repository.ShowRepository;
 import pro.filaretov.spring.dgs.types.Actor;
 import pro.filaretov.spring.dgs.types.Rating;
 import pro.filaretov.spring.dgs.types.Show;
@@ -24,53 +27,18 @@ import pro.filaretov.spring.dgs.types.ShowFilter;
 public class ShowService {
 
     private final ActorService actorService;
-
-    private List<Show> shows;
-
-    @PostConstruct
-    public void init() {
-        Actor frodo = actorService.getFrodo();
-        Actor aragorn = actorService.getAragorn();
-        Actor sauron = actorService.getSauron();
-
-        Show theLordOfTheRings1 = new Show.Builder()
-            .title("The Lord of The Rings: Fellowship of the Ring")
-            .releaseYear(2001)
-            .actors(List.of(frodo, aragorn, sauron))
-            .scores(new ArrayList<>())
-            .rating(new Rating(0.0, 0))
-            .build();
-        Show theLordOfTheRings2 = new Show.Builder()
-            .title("The Lord of The Rings: The Two Towers")
-            .releaseYear(2002)
-            .actors(List.of(frodo, aragorn))
-            .scores(new ArrayList<>())
-            .rating(new Rating(0.0, 0))
-            .build();
-        Show theLordOfTheRings3 = new Show.Builder()
-            .title("The Lord of The Rings: The Return of the King")
-            .releaseYear(2003)
-            .actors(List.of(frodo, aragorn, sauron))
-            .scores(new ArrayList<>())
-            .rating(new Rating(0.0, 0))
-            .build();
-
-        shows = new CopyOnWriteArrayList<>();
-        shows.add(theLordOfTheRings1);
-        shows.add(theLordOfTheRings2);
-        shows.add(theLordOfTheRings3);
-    }
+    private final ShowRepository showRepository;
+    private final ShowMapper showMapper;
 
     public List<Show> find(String title, ShowFilter filter) {
-        return shows.stream()
-            .filter(show -> title == null || show.getTitle().contains(title))
-            .filter(show -> filter == null || filter.getActorRole() == null ||
-                show.getActors().stream()
-                    .anyMatch(actor -> actor.getRole().equalsIgnoreCase(filter.getActorRole())))
-            .collect(Collectors.toList());
+        // TODO - use filter
+
+        List<ShowEntity> entities = showRepository.findByTitleContains(title);
+        return showMapper.map(entities);
     }
 
-    public Rating addRating(Integer score, String title) {
+    // TODO - fix this
+    /*public Rating addRating(Integer score, String title) {
         log.info("Adding rating '{}' to the show '{}'", score, title);
 
         for (int i = 0; i < shows.size(); i++) {
@@ -104,6 +72,6 @@ public class ShowService {
 
         shows.set(i, newShow);
         return newRating;
-    }
+    }*/
 
 }

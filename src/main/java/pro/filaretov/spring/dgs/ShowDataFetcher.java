@@ -30,7 +30,8 @@ public class ShowDataFetcher {
         return showService.find(title, filter);
     }
 
-    @DgsData(parentType = MUTATION.TYPE_NAME, field = MUTATION.AddRating)
+    // TODO - fix this
+    /*@DgsData(parentType = MUTATION.TYPE_NAME, field = MUTATION.AddRating)
     public Rating addRating(@InputArgument("input") RatingInput ratingInput) {
         Integer score = ratingInput.getScore();
         if (score < 1 || score > 5) {
@@ -39,6 +40,6 @@ public class ShowDataFetcher {
 
         String title = ratingInput.getTitle();
         return showService.addRating(score, title);
-    }
+    }*/
 
 }

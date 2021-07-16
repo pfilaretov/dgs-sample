@@ -16,14 +16,21 @@ repositories {
 dependencies {
     // Spring boot
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
     // DGS Framework
     implementation(platform('com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:latest.release'))
     implementation 'com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter'
 
+    // Database
+    runtimeOnly 'com.h2database:h2'
+
     // Other
     compileOnly 'org.projectlombok:lombok:1.18.20'
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+    implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
 
     // Test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
